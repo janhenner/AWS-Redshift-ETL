@@ -1,5 +1,5 @@
 # Sparkify Amazon Redshift Data Warehouse set up and ETL pipeline
-
+# (in progress)
 
 ## General info
 We work with the data of a fictitious music streaming startup called Sparkify. Sparkify wants to analyze the data they've been collecting on songs and user activity on their new music streaming app.
@@ -36,9 +36,9 @@ However, automating the cluster creation has multiple advantages: increased repr
 
 4. Run the Python script to create tables in Redshift. Execute in the command line in the directory where the files are: `python create_tables.py`.
 
-Run the creation script for the Python database and database tables. Execute in the command line in the directory where the files are: `python create_tables.py`.
+5. Run the ETL script in the command line: `python etl.py`.
 
-Run the ETL script in the command line: `python etl.py`.
+Cleaning up the resources: key to not incur unexpected costs is to shut down the Amazon Redshift cluster. You can use the code in the section "Connect to the cluster" of `Create_Redshift_Cluster.ipynb` to shutdown the resources.  
 
 The Amazon Redshift database can now be used for the Sparkify analytics use case.
 

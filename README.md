@@ -1,5 +1,6 @@
 # Sparkify Amazon Redshift Data Warehouse set up and ETL pipeline
 
+
 ## General info
 We work with the data of a fictitious music streaming startup called Sparkify. Sparkify wants to analyze the data they've been collecting on songs and user activity on their new music streaming app.
 
@@ -54,21 +55,13 @@ Exploratory Data Analysis (EDA) to understand the input data.
 Provides the code to create an AWS Redshift cluster using the __AWS SDK for Python, ie boto3__.
 
 `create_tables.py`: 
-Create the staging tables for user `staging_events` and `staging_songs`.
-
-tables using the _psycopg2_ PostgreSQL Python driver as 
+Connects to the Redshift cluster and coordinates the dropping and creation of tables using the SQL queries in `sql_queries.py`.
 
 `etl.py`:
-Extracts JSON logs and metadata, applies transformations and inserts the data into the PostgreSQL database.
+Extracts data from the JSON directories with user listening activity (logs) and song metadata, applies transformations and inserts the data into the Redshift database fact and dimension tables. It coordinates this activity using the SQL queries in `sql_queries.py`.
 
 `sql_queries.py`: 
-Contains the SQL to create tables, to insert records, to find songs. The SQL is used in `etl.py`.
-
-`etl.ipynb`:
-The Jupyter notebook yields insights into the process to develop `etl.py`.
-
-`test.ipynb`: 
-The Jupyter notebook can be used to see the database table content after running the ETL pipeline.
+Contains the SQL code to create tables, transform data and to insert records.
 
 
 ## Discussion of approach
@@ -76,7 +69,7 @@ The fictitious music streaming startup called Sparkify migrated their database t
 
 
 ### The DB design
-The two directories of JSON data with user listening activity and song metadata are loaded into two Redshift staging tables. The Redshift COPY commands for the loading step were carefully designed to handle
+The two directories of JSON data are loaded into two Redshift staging tables with user listening activity `staging_events` and song metadata `staging_songs`. The Redshift COPY commands for the loading step were carefully designed to handle
 - the different JSON input (e.g. using the option to provide a JSONPaths file to parse the JSON source data instead of the _auto_ option, [source](https://docs.aws.amazon.com/redshift/latest/dg/copy-usage_notes-copy-from-json.html) and working with the _timeformat_ option)
 - performance considerations: we focus here on the ingestion of the data testing different settings while query performance is not the main focus. We set COMPUPDATE and STATUPDATE off ie compression encodings are not changed and table optimising statistics are skipped ([source](https://docs.aws.amazon.com/redshift/latest/dg/copy-parameters-data-load.html#copy-statupdate)).
 

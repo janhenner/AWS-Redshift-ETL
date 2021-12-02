@@ -1,5 +1,4 @@
 # Sparkify Amazon Redshift Data Warehouse set up and ETL pipeline
-# (in progress)
 
 ## General info
 We work with the data of a fictitious music streaming startup called Sparkify. Sparkify wants to analyze the data they've been collecting on songs and user activity on their new music streaming app.

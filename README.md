@@ -81,7 +81,7 @@ The startup Sparkify can answer their question what songs users are listening to
 ### Creating the Amazon Redshift database
 We use the AWS SDK for Python, ie boto3. The steps are provided in `Create_Redshift_Cluster.ipynb`. 
 
-It reads from `dwh.cfg` (a) the credentials to access the AWS account with boto3 and (b) the Redshift cluster configuration including the hardware requested as well as the name and credentials to be created with the new Redshift cluster. A __new IAM role__ is created to grant Redshift access to data sources, here S3 (...). Next the Redshift cluster is created and the cluster endpoint and role ARN are written to `dwh.cfg` using `configparser.ConfigParser().set()`. After opening an incoming TCP port the access to the newly created cluster is tested.
+It reads from `dwh.cfg` (a) the credentials to access the AWS account with boto3 and (b) the Redshift cluster configuration including the hardware requested as well as the name and credentials to be created with the new Redshift cluster. A __new IAM role__ is created to grant Redshift access to data sources, here to S3. Next the Redshift cluster is created and the cluster endpoint and role ARN are written to `dwh.cfg` using `configparser.ConfigParser().set()`. After opening an incoming TCP port the access to the newly created cluster is tested.
 
 
 ### Possible extensions
